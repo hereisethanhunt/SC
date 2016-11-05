@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<link rel="icon" href="https://pbs.twimg.com/profile_images/560758587392159744/XmMItGRp.png">
+
+<!-- Jquery , Jquery-ui and Bootstrap CDN -->
+
+<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<title>socialcops</title>
+<meta charset="utf-8">
+
+<!-- Controlling page dimensions and scaling meta tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<style type="text/css">
+
+
+h2 { color: #000000; font-size: 16px; font-family: "Libre Baskerville", serif; line-height: 20px; text-shadow: 0 1px 1px #049372;font-style: italic; padding-top: 8px; margin: 0px;margin-bottom: 10px;}
+
+
+/* Title div - css */
+
+.classedit-title{font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    letter-spacing: -.02em;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 40px;
+    margin-left: -2.5px;
+    line-height: 1.04;
+    letter-spacing: -.028em;
+    margin:0px;
+    padding: 10px;
+}
+
+/* Title div - css */
+
+
+/* Subtitle Div - css */
+
+.classedit-subtitle{font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    letter-spacing: -.02em;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 24px;
+    color: rgba(0,0,0,.44);
+    margin-left: -1.5px;
+    line-height: 1.22;
+    letter-spacing: -.018em;
+}
+
+/* Subtitle Div - css */
+
+/* Write story Div - css */
+
+.classedit{
+	font-family: medium-content-serif-font,Georgia,Cambria,"Times New Roman",Times,serif;
+    letter-spacing: .01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+    padding:20px;
+}
+
+/* Write story Div - css */
+
+
+/* Styling bootstrap well and horizontal line */
+
+.well {
+	border: 1px solid white;
+	min-height: 50px;
+   background-color: rgba(245, 245, 245, 0.4);
+}
+hr {
+    display: block;
+    height: 0px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/* Styling bootstrap well and horizontal line */
+
+
+/* Placeholder for title , subtitle , story */
+
+div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+    content: attr(data-placeholder);
+    float: left;
+    margin-left: 2px;
+    color: #b3b3b3;
+}
+
+/* Placeholder for title , subtitle , story */
+
+
+/* Styling Upload photo */
+
+#upload-photo {
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
+}
+
+/* Styling Upload photo */
+
+
+/*tooltip css*/
+
+.tooltipDiv  {
+  text-align: center;
+  font: italic normal 90% Georgia, serif;
+  color: black;
+  text-shadow: white 0 1px;
+  background: rgba(0,0,0,0.9);
+  background-clip: padding-box;
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.9);
+  border: 2px solid #111;
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  position: absolute;
+  width: 98px;
+  height: 38px;
+  margin-top: -45px;
+  padding: 10px 0;
+}
+
+.arrow {
+  width: 0; 
+  height: 0; 
+margin-top: -8px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top : 10px solid ;
+}
+    
+.tooltipDiv  , .arrow{
+      display: none;   
+}
+
+.tool-ul {
+    list-style-type: none;
+    margin-top: -10px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.tool-li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+.tool-li:last-child {
+    border-right: none;
+}
+
+.tool-a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 9px;
+    text-decoration: none;
+}
+
+.tool-li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+/*tooltip css*/
+
+
+/*tags added at the end of page - css*/
+
+#cocktails ul{padding:0}
+#cocktails ul li{list-style-type:none;display:inline;margin-left:5px;margin-top: 5px; float:left;}
+#cocktails ul li button{display:block;}
+.flexbox { display: flex; flex: 0; margin: 0 0 0 0rem;padding: .4em .4em; white-space: nowrap; }
+
+/*tags added at the end of page - css*/
+
+
+/* submit button */
+
+.button {
+  border-width: 1.5px;
+  border-radius: 20px;
+  background-color: rgba(0,0,0,0);
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  border-color: rgba(0,0,0,0.5);
+  margin: 5px;
+}
+
+.button span {
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgba(0,0,0,0.5);
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  color: rgba(0,0,0,1);
+  border-color: rgba(0,0,0,1);
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+
+.button:hover span , .button:hover {
+  border-color: rgba(0,0,0,1);
+  color: rgba(0,0,0,1);
+  padding-right: 20px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  border-color: rgba(0,0,0,1);
+  right: 0;
+}
+
+.btn:active,
+.btn:focus,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+/* submit button */
+
+
+/* drag and drop handle and draggable div - css */
+
+.item {
+    margin: 10px;
+    padding: 0px 10px 10px 5px;
+    border: 1px solid #ddd;
+    background:#fff;
+    border-radius: 8px;
+}
+
+.handle {
+    width:12px;
+    margin: 5px 0 0 0;
+    height:34px;
+    cursor: move;
+    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQIW2OcN2/efwYgSEpKYgTRjBgCIFFkAFaGDAC2jQgFaRPeawAAAABJRU5ErkJggg==) repeat;
+}
+
+/* drag and drop handle and draggable div - css */
+
+</style>
+
+<body>
+
+<!-- Fixed Navigation bar - Bootstrap -->
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+  		<div class="container-fluid">
+    		<div class="navbar-header">
+      			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+      			</button>
+      			<img class="img-responsive" src="https://pbs.twimg.com/profile_images/560758587392159744/XmMItGRp.png" alt="socialcops" width="50" height="50">
+    		</div>
+    		<div class="collapse navbar-collapse" id="myNavbar">
+      			<ul class="nav navbar-nav">
+        			<li class="active"><a href="https://socialcops.com">SocialCops</a></li>
+      			</ul>
+      			<ul class="nav navbar-nav navbar-right">
+        			<li><a href="javascript:void(0)" id="logged-in-username"><span class="glyphicon glyphicon-user"></span> GuestUser</a></li> 
+        			<li><a href="javascript:void(0)" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        			<li><a href="javascript:void(0)" id="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      			</ul>
+    		</div>
+  		</div>
+	</nav>
+
+<!-- Fixed Navigation bar - Bootstrap -->
+
+
+<div class="container-fluid">
+
+
+  <!--Bootstrap Modal Login pop-up-->
+  
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter Name">
+            </div>
+              <button type="submit" class="btn btn-success btn-block" id="login-button"><span class="glyphicon glyphicon-off"></span> Login</button>
+        </div>
+      </div>
+      <!-- Modal content-->
+    </div>
+  </div>
+  <!--Bootstrap Modal Login pop-up-->
+
+
+
+
+<div class="row" style="padding-top:100px">
+
+	<!-- HTML5 Image Upload div -->
+
+	<div class="col-sm-4">
+		
+		<h2 style="margin:0px;padding:0px"><label for="upload-photo"><span class="glyphicon glyphicon-camera"></span>  Click To Add Image</label></h2>  <!-- Click to add image -->
+		<input type="file" name="photo" id="upload-photo" onchange="previewFile()" />
+		<hr style="clear:both;"/>
+		<img class="img-responsive" src="" id="imageupload">
+		<img class="img-responsive" src="https://pbs.twimg.com/profile_images/560758587392159744/XmMItGRp.png" id="default">   <!-- Default Image Set -->
+
+	</div>
+
+	<!-- HTML5 Image Upload div -->
+
+	<div class="col-sm-8">
+
+	<!-- Simple Logged In User-name Using session variable -->
+		
+		<div class="row">
+			<div class="col-sm-1" style="padding-right:0px;">
+			<h2><span class="glyphicon glyphicon-user"></span></h2>
+			</div>
+			<div class="col-sm-11" style="padding-left:0px;">
+			<h2 id="logged-in-username-h3"></h2>
+			</div>
+			<hr style="clear:both;"/>
+  		</div>
+
+  	<!-- Simple Logged In User-name Using session variable -->
+
+  	<!-- Title Div space content-editable -->
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="well well-md classedit-title" contenteditable="true" data-placeholder='Title...'>
+				</div>
+			</div>
+		</div>
+
+	<!-- Title Div space content-editable -->
+
+	<!-- SubTitle Div space content-editable -->
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="well well-sm classedit-subtitle" contenteditable="true" data-placeholder='Subtitle...'>
+				</div>
+			</div>
+		</div>
+
+	<!-- SubTitle Div space content-editable -->
+
+
+
+		<div class="row">
+		<div id="sortable" class="ui-sortable">  <!-- Jquery Sortable - used to drop and drag div's --> 
+		
+		<div class="item col-sm-11">
+			<div class="row">
+				<div class="col-sm-1">
+      			<div class="handle"></div> <!-- Handle used to drag and drop content-editable divs -->
+      			</div>
+				<div class="col-sm-11 classedit" id="1" contenteditable="true"  data-placeholder='Write your story...'>  <!-- Contenteditable divs which are added on enter and deleted on backspace -->
+						
+				</div>
+
+			</div>	
+		</div>
+
+		<div class="item col-sm-11">
+			<div class="row">
+				<div class="col-sm-1">
+      			<div class="handle"></div> <!-- Handle used to drag and drop content-editable divs -->
+      			</div>
+				<div class="col-sm-11 classedit" id="1" contenteditable="true"  data-placeholder='Write your story...'>  <!-- Contenteditable divs which are added on enter and deleted on backspace -->
+						
+				</div>
+
+			</div>	
+		</div>
+		
+		</div> <!-- Jquery Sortable - used to drop and drag div's -->
+		</div> 
+
+
+			<!-- Button on-click the <a> tags are added to the buttom of the page -->
+
+			<div class="row">
+				<div class="col-sm-12">
+					<button type="submit" class="btn btn-block button" id="tag-submit"><span id="myspan">Save</span></button>
+				</div>		
+			</div>
+
+			<!-- Button on-click the <a> tags are added to the buttom of the page -->
+
+
+
+			<hr style="clear:both;"/>
+
+			<!-- Where the <a> tags are added at the bottom of the page -->
+			
+			<div class="row">
+				<div id="cocktails" class="col-sm-12" data-placeholder='Add Links :'>
+					<ul class="tag-ul" id="tag-ul-id">
+
+					</ul>
+				</div>
+			</div>
+
+			<!-- Where the <a> tags are added at the bottom of the page -->
+
+		</div>
+
+	</div>
+
+
+<!-- tooltip-div -->
+
+	<div id="infoDiv" class="tooltipDiv">
+	  <ul class="tool-ul">
+	    <li class="tool-li"><a class="tool-a" id="bold" href="javascript:void(0)"><span class="glyphicon glyphicon-bold"></span></a></li> <!-- clickable makes bold -->
+	    <li class="tool-li"><a class="tool-a" id="underline" href="javascript:void(0)"><span class="glyphicon glyphicon-magnet"></span></a></li> <!-- clickable makes underline -->
+	    <li class="tool-li"><a class="tool-a" id="color" href="javascript:void(0)"><span class="glyphicon glyphicon-font"></span></a></li> <!-- clickable changes color -->
+	  </ul>
+	</div>
+	<div class="arrow"></div>
+
+<!-- tooltip-div -->
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+/* placeholder of title */
+
+$(".classedit-title").text("").trigger("change");
+
+$(".classedit").text("").trigger("change");
+(function ($) {
+
+	$(document).on('change keydown keypress input', 'div[data-placeholder]', function() { // ... on keydown or mouse input on the div which has [data-placeholder]
+
+		if (this.textContent) {
+			this.dataset.divPlaceholderContent = 'true';  // we toggle , if nothing in text , then show the data-placeholder
+		}
+		else {
+			delete(this.dataset.divPlaceholderContent); // .. else delete it
+		}
+	});
+
+})(jQuery);
+
+/* placeholder of title */
+
+
+/*  start the sortable property of jquery */
+
+$(document).ready(function(){
+
+
+    $(function() {
+      $("#sortable").sortable({handle: '.handle'});
+    });
+
+/*  start the sortable property of jquery */
+
+
+	/* login toggle , session initial value , default login user */
+
+	sessionStorage.setItem("newdiv","1"); // initially we have only a single in our text editor . we store the id of that div to session variable "newdiv"
+	console.log(sessionStorage.getItem("newdiv"));
+    $("#myBtn").click(function(){  // .... toggles login popup 
+        $("#myModal").modal('toggle');
+    });
+
+    if(sessionStorage.getItem("loginname") == null)  // ... if loginname is "null" , it sets "guest-user"
+    {
+    	sessionStorage.setItem("loginname","GuestUser");
+    	document.getElementById("logged-in-username").innerHTML = sessionStorage.getItem("loginname");
+    	document.getElementById("logged-in-username-h3").innerHTML = sessionStorage.getItem("loginname");
+    }
+    else  // ... if not null (in case of page reload , the session variable might be holding some login username) , then add the session variable name 
+    {
+    	document.getElementById("logged-in-username").innerHTML = sessionStorage.getItem("loginname");
+    	document.getElementById("logged-in-username-h3").innerHTML = sessionStorage.getItem("loginname");
+    }
+
+    /* login toggle , session initial value , default login user */
+
+
+
+    /*copy paste problem in text-editor*/
+    
+    document.querySelector("div[contenteditable]").addEventListener("paste", function(e) { // if we copy and paste to one of our contenteditable divs , we want to copy on rich text.
+ 
+     	e.preventDefault();   //....  we cancel the direct paste property
+ 
+    	var text = e.clipboardData.getData("text/plain"); // ..... get text representation of clipboard
+
+    	document.execCommand("insertHTML", false, text); // ... and insert the text manually
+	});
+
+	/*copy paste problem in text-editor*/
+
+});
+
+
+/*on pressing enter add a div . on presing backspace delete the empty div*/
+
+$(document).on("keydown", ".classedit" , function(e){   // on cliking backspace ...
+
+	if(e.keyCode == 8)
+ 	{
+ 		
+ 		 		if ($('#'+event.target.id).text().trim().length == 0) { // ..we check if on clicking backspace , text in the div is now "null"
+
+ 			console.log("decscdsc" + event.target); 
+ 			if(event.target.id != "1")  //  .... if the text in the div is "null" , we check if it is the first child or other divs.
+ 			{
+ 				try {
+
+ 					var next_focus = event.target.parentNode.parentNode.previousSibling.childNodes[0].childNodes[1]; // ... if it is other divs , we move to the parent and then to the previous sibling of the node. and store it in a variable
+ 					(event.target).parentNode.parentNode.style.display = 'none';  // ... we hide the current div display on which backspace was pressed..
+ 					next_focus.focus(); // ... we focus on the div which we stored in the next_focus variable (which is its previous sibling)
+				}
+				catch(err) {
+					var next_focus=(event.target).parentNode.parentNode.previousSibling.childNodes[1].childNodes[3]; // .... same process for the immediate sibling of "write ur story" div 
+ 					(event.target).parentNode.parentNode.style.display = 'none';
+ 					next_focus.focus();
+				}
+
+ 			}
+ 			
+  		}
+ 	}
+	else if (e.keyCode == 13 && !e.shiftKey) { // if enter is pressed and if enter + shift hasnt been pressed 
+    	
+    	sessionStorage.setItem("newdiv",parseInt(sessionStorage.getItem("newdiv"))+1);
+    	
+    	var item = document.createElement("div");  // .....we need to create a new div .. we will replicate the dom like the "write in story" div.
+    	item.className="item col-sm-11";  // .... we create all divs and put the dom nodes in order.
+		var item_row = document.createElement("div");
+    	item_row.className="row";
+    	var row_col1 = document.createElement("div");
+    	row_col1.className="col-sm-1";
+    	var col1_handle = document.createElement("div");
+    	col1_handle.className="handle";
+    	var row_col2 = document.createElement("div");
+    	row_col2.className="col-sm-11 classedit";
+    	row_col2.id=sessionStorage.getItem("newdiv");
+    	row_col2.contentEditable=true;
+
+    	item.appendChild(item_row);
+    	item_row.appendChild(row_col1);
+		item_row.appendChild(row_col2);
+		row_col1.appendChild(col1_handle);
+  
+    	var element = document.getElementById("sortable");
+
+    	
+		if ((event.target.parentNode.parentNode).nextSibling) { // .... the div which is created should be added just next to the current focus div , and not to the bottom.
+  			element.insertBefore(item, (event.target.parentNode.parentNode).nextSibling); // .... so we find if it has a sibling , we insert just before its first sibling
+		}
+		else {
+  			element.appendChild(item); // ... else if no sibling , insert as last child (which make this still the immediate sibling)
+		}
+		row_col2.focus();
+    	e.preventDefault();
+ 	 	return false;
+ 	 	
+ 	}
+});
+
+
+/*on pressing enter add a div . on presing backspace delete the empty div*/
+
+
+
+/* login and logout (session user)*/
+
+    $("#login-button").click(function() {
+    	console.log(document.getElementById("usrname").value); 
+		sessionStorage.setItem("loginname",document.getElementById("usrname").value); // .... we set the name of user as stored in session variable.
+
+		document.getElementById("logged-in-username").innerHTML = sessionStorage.getItem("loginname"); // .... one in nav-bar , one in user identity. 
+		document.getElementById("logged-in-username-h3").innerHTML = sessionStorage.getItem("loginname");
+
+    });
+
+    $("#logout").click(function() {
+    	console.log(document.getElementById("usrname").value);
+		sessionStorage.setItem("loginname","GuestUser"); //.... on clicking logout , we set session variable name to "guest-user" ...
+
+		document.getElementById("logged-in-username").innerHTML = sessionStorage.getItem("loginname"); // .... we set "guest user" in the current user
+		document.getElementById("logged-in-username-h3").innerHTML = sessionStorage.getItem("loginname");
+
+    });
+
+/* login and logout (session user)*/
+
+
+/* image insertion*/
+
+function previewFile(){
+       var preview = document.querySelector('#imageupload'); //selects the query named img
+       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+       document.getElementById("default").style.display = 'none';
+  }
+
+  /* image insertion */
+
+
+
+/*creation of tooltip scripting*/
+
+function getTopPos(el) {
+	for (var topPos = 0;el != null;topPos += el.offsetTop, el = el.offsetParent);
+    return topPos;
+}
+
+document.onmouseup = doSomethingWithSelectedText; // On mouse-up or key-up do the tooltip thing
+document.onkeyup = doSomethingWithSelectedText;
+
+    function doSomethingWithSelectedText() {
+      var selectedText = getSelectedText(); // ....Get the highlighted or selected text from the getselectedtext() function .
+
+
+      if (selectedText) {
+
+
+      	var topmargin=getTopPos(event.target); // get the div top position on which current focus is there
+      	
+		
+        var range = window.getSelection().getRangeAt(0);
+        var dummy = document.createElement("span");
+        range.insertNode(dummy);
+        var rect = dummy.getBoundingClientRect(); // .... Get the left position of the highlighted text.
+        var x = rect.left;		
+        dummy.parentNode.removeChild(dummy);
+        
+        var selection = window.getSelection().getRangeAt(0);
+    	console.log(selection.startOffset+ " "+ selection.endOffset);
+        range.collapse(false);
+        var dummy = document.createElement("span");
+        range.insertNode(dummy);
+        var rect = dummy.getBoundingClientRect();
+        var x1 = rect.left;  // .... Get the right position of highlighted text.
+        dummy.parentNode.removeChild(dummy);
+    	
+        
+        $('#infoDiv').css('display', 'block'); // .... unhide the tooltip div created using css.
+        $('#infoDiv').css('position', 'absolute');
+        $('#infoDiv').css('left', (x1+x)/2 - 50); // ... make the position of tooltip div always in the centre of left and right selected position.
+        /*console.log($('#'+ event.target.id).height());*/
+       
+        $('#infoDiv').css('top',topmargin+(23)); 
+        
+        $('.arrow').css('display', 'block'); 
+        $('.arrow').css('position', 'absolute');
+        $('.arrow').css('left', (x1+x)/2 - 10); // make the postion of the tip of tooltip in centre by (x-left + x-right)/2.
+        $('.arrow').css('top', topmargin+(23)); // div top position on which current focus is there 
+      	} else {
+        $('.arrow').css('display','none');
+        $('#infoDiv').css('display', 'none');
+      };
+    };
+
+	function getSelectedText() {
+	    var text = "";
+	    if (typeof window.getSelection != "undefined") {  // ... select the text fand return.....
+	      text = window.getSelection().toString();
+	    } 
+	    else if (typeof document.selection != "undefined" && document.selection.type == "Text") 
+	    {
+	      text = document.selection.createRange().text;
+	    }
+	      return text;
+	    }
+
+$(document).on('click', '.tool-a', function() {
+
+  if($(this).attr('id') == 'underline') // on clicking the buttons on the tooltip , we return if undrline , bold or change color is pressed
+    document.execCommand('underline');  // toggle the highlighted with bold.
+  else if($(this).attr('id') == 'bold')
+    document.execCommand('bold');
+  else if($(this).attr('id') == 'color')  // if color is selected .........
+    {
+      var colour = document.queryCommandValue("ForeColor");  // .... get the current color state of text returns rgb() format
+      
+      if(colour.localeCompare("rgb(255,0,0)") == 1)   //....   if it is not red , toggle to red.
+        document.execCommand("foreColor",false,"rgb(255,0,0)");
+      else
+        document.execCommand("foreColor", false, "rgb(51,51,51)")   // .... if already red , make it black...
+    }
+
+  $('.arrow').css('display','none');   // ....after selection from tooltip , hide tooltip
+  $('#infoDiv').css('display', 'none');
+});
+
+/*creation of tooltip scripting*/
+
+
+/*Tag scripting */
+
+$("#tag-submit").click(function() {  // On clicking the Submit Button ....
+
+		console.log($("#myspan").text());  
+		if($("#myspan").text() == "Save")   // ... It checks whether Button has text "Save" or "Edit" . If it is "Save"
+		{
+			document.getElementById("myspan").innerHTML="Edit";  // .... change button text to "edit" .
+			var editable_elements = document.querySelectorAll("[contenteditable=true]");  // .... Select all contenteditable text in editable_elements[] array .
+			for(var i=0;i<editable_elements.length;i++)
+			{
+				editable_elements[i].setAttribute("contentEditable", false); // Set all contenteditable divs to false. (because we are saving it. so no changes now can take place.)
+			}
+
+			var content="";
+		
+			for(var i=0;i<editable_elements.length;i++)
+			{
+				content = content + $(editable_elements[i]).html();	// ... EXtract all the text from contenteditable divs.
+			}
+			
+			console.log(content);
+			if(content.match(/&lt;a&gt;(.*?)&lt;\/a&gt;/g) != null) // ... string regex comparison with <a> </a> tags ..
+				var result = content.match(/&lt;a&gt;(.*?)&lt;\/a&gt;/g).map(function(val){  // .... If present .the text between those tags are added to result[].
+	   				return val.replace(/&lt;\/?a&gt;/g,'');
+				});
+
+			console.log(result);
+			for(var i=0;i<result.length;i++) 
+			{
+				console.log(result[i]);
+				var li = document.createElement("li");  // ... create dom elements to add links of the tag-names in result[].
+	    		li.className="tag-li";
+	    		var a = document.createElement("a");
+	    		a.href = "javascript:void(0)";
+	    		var linkText = document.createTextNode(result[i]); // .... Add text between <a></a> anchor in the created dom links.
+	    		a.style.color="black";
+
+	    		var button = document.createElement("button");
+	    		if(i%2==0) 											// ....alternatively color black and red links .
+	    			button.className = "btn flexbox btn-warning";
+	    		else
+	    			button.className = "btn flexbox btn-primary";
+	   
+	    		a.appendChild(linkText);
+	    		li.appendChild(button);
+	    		button.appendChild(a);
+	    		document.getElementById("tag-ul-id").appendChild(li);
+			}
+	
+		}
+		else
+		{
+			document.getElementById("myspan").innerHTML="Save"; // ... If the button text has "edit" and not "save" written on it.(that means user clicked "edit" button now)
+			var myNode = document.getElementById("tag-ul-id");
+			
+			while (myNode.firstChild) {  // ... remove the tags which were added on the bottom of the page
+    			myNode.removeChild(myNode.firstChild);
+			}
+
+			var editable_elements = document.querySelectorAll("[contenteditable=false]"); // ... Select all divs with contenteditable = false.
+			for(var i=0;i<editable_elements.length;i++)
+			{
+				console.log("vdvdf");
+				editable_elements[i].setAttribute("contentEditable", true); // .... make all div contenteditable = true. (as user clicked edit he wants to edit text)
+			}
+
+		}
+
+
+    });
+
+/*tag scripting*/
+
+</script>
+
+</body>
+
+</html>
